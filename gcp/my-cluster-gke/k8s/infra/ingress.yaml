@@ -1,0 +1,61 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-host
+  annotations:
+    spec.ingressClassName: "nginx"
+    kubernetes.io/ingress.global-static-ip-name: "my-static-ip"
+    cert-manager.io/cluster-issuer: "letsencrypt"
+    ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 10m
+  labels:
+    name: ingress-host
+spec:
+  rules:
+  - host: storage.app.br
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: teste
+            port: 
+              number: 80
+  - host: www.storage.app.br
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: teste
+            port: 
+              number: 80
+  - host: api.storage.app.br
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: nestjs
+            port: 
+              number: 80
+  - host: www.api.storage.app.br
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: nestjs
+            port: 
+              number: 80
+  tls:
+  - hosts:
+    - "storage.app.br"
+    - "api.storage.app.br"
+    - "www.api.storage.app.br"
+    
+    secretName: letsencrypt-tls

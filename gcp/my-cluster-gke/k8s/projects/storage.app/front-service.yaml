@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: storage-app-front
+spec:
+  selector:
+    app: storage-app-front
+  type: ClusterIP
+  ports:
+  - name: storage-app-front
+    port: 80
+    targetPort: 80
+    protocol: TCP

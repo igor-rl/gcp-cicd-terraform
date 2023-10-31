@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storage-app-front-deploy
+spec:
+  selector:
+    matchLabels:
+      app: storage-app-front
+  replicas: 1  # Adicione esta linha se você quiser especificar o número de réplicas
+  template:
+    metadata:
+      labels:
+        app: storage-app-front
+    spec:
+      containers:
+      - name: storage-app-front
+        image: docker.io/igorlage/storage-app-front:v0.0.0
+        ports:
+        - containerPort: 80
+        env:
+        - name: TZ
+          value: "America/Sao_Paulo"
