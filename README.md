@@ -113,3 +113,5 @@ kubectl describe certificate letsencrypt-tls
 
 ## 5. Pipeline CI-CD
 As pipe lines de CI-CD serão acionadas automaticamente quando um novo commit na branch 'master' dos respectivos projetos são enviados. Esse gatilho inicia um novo build da imagem docker no projeto e faz o apply no GKE com a nova versão do projeto.
+
+![footer](https://github.com/igor-rl/assets/blob/main/img/github-exellent-sistemas-project-footer.jpg)
